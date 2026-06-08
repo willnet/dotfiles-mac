@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  bin/dotfiles import [target]
+
+Targets:
+  all         Import all managed config files
+  git-ignore  Import ~/.config/git/ignore
+USAGE
+}
+
+import_file() {
+  local source_path="$1"
+  local destination_path="$2"
+
+  mkdir -p "$(dirname "$destination_path")"
+  cp "$source_path" "$destination_path"
+  printf 'Imported %s\n' "$destination_path"
+}
+
+import_git_ignore() {
+  import_file "$ROOT_DIR/config/git/ignore" "$HOME/.config/git/ignore"
+}
+
+import_all() {
+  import_git_ignore
+}
+
+command="${1:-}"
+target="${2:-all}"
+
+case "$command" in
+  import)
+    case "$target" in
+      all)
+        import_all
+        ;;
+      git-ignore)
+        import_git_ignore
+        ;;
+      *)
+        printf 'Unknown import target: %s\n\n' "$target" >&2
+        usage >&2
+        exit 1
+        ;;
+    esac
+    ;;
+  -h|--help|help|"")
+    usage
+    ;;
+  *)
+    printf 'Unknown command: %s\n\n' "$command" >&2
+    usage >&2
+    exit 1
+    ;;
+esac
