@@ -2,6 +2,18 @@
 
 macOS settings and configuration files.
 
+## Install
+
+Install Homebrew and the development tools declared in `Brewfile`:
+
+```sh
+bin/dotfiles install
+```
+
+This installs `ghq`, `peco`, `git`, `gh`, `ag`, and `starship`. Homebrew's
+environment is applied only while the command is running; shell startup files
+are not modified.
+
 ## Import
 
 Import all managed config files:

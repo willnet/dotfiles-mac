@@ -1,0 +1,6 @@
+brew "ghq"
+brew "peco"
+brew "git"
+brew "gh"
+brew "the_silver_searcher"
+brew "starship"

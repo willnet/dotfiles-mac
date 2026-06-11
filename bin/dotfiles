@@ -6,12 +6,40 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 usage() {
   cat <<'USAGE'
 Usage:
+  bin/dotfiles install
   bin/dotfiles import [target]
+
+Commands:
+  install     Install Homebrew and development tools
+  import      Import managed config files
 
 Targets:
   all         Import all managed config files
   git-ignore  Import ~/.config/git/ignore
 USAGE
+}
+
+install_homebrew() {
+  if ! command -v brew >/dev/null 2>&1; then
+    printf 'Installing Homebrew...\n'
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+
+  if [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  elif command -v brew >/dev/null 2>&1; then
+    eval "$(brew shellenv)"
+  else
+    printf 'Homebrew installation completed, but brew was not found.\n' >&2
+    exit 1
+  fi
+}
+
+install_tools() {
+  install_homebrew
+  brew bundle --file="$ROOT_DIR/Brewfile"
 }
 
 import_file() {
@@ -35,6 +63,9 @@ command="${1:-}"
 target="${2:-all}"
 
 case "$command" in
+  install)
+    install_tools
+    ;;
   import)
     case "$target" in
       all)
