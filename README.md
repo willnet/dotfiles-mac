@@ -10,8 +10,8 @@ Install Homebrew and the development tools declared in `Brewfile`:
 bin/dotfiles install
 ```
 
-This installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`, and the Moralerspace
-font. Homebrew's environment is applied only while the command is running;
+This installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`, `mise`, and the
+Moralerspace font. Homebrew's environment is applied only while the command is running;
 shell startup files are not modified.
 
 ## Import
