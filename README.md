@@ -33,3 +33,11 @@ Import zsh aliases and load them from `~/.zshrc`:
 ```sh
 bin/dotfiles import zsh-aliases
 ```
+
+Import peco history and ghq widgets and load them from `~/.zshrc`:
+
+```sh
+bin/dotfiles import zsh-peco
+```
+
+The widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository selection.
