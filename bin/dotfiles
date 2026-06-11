@@ -18,6 +18,7 @@ Targets:
   git-ignore  Import ~/.config/git/ignore
   zsh-aliases Import zsh aliases and load them from ~/.zshrc
   zsh-peco    Import peco widgets and load them from ~/.zshrc
+  zsh-tools   Configure Homebrew, mise, and Starship for zsh
 USAGE
 }
 
@@ -61,30 +62,40 @@ import_zsh_aliases() {
   local source_line='source "$HOME/.config/zsh/aliases.zsh"'
 
   import_file "$ROOT_DIR/config/zsh/aliases.zsh" "$HOME/.config/zsh/aliases.zsh"
-  touch "$HOME/.zshrc"
-
-  if ! grep -Fqx "$source_line" "$HOME/.zshrc"; then
-    printf '\n%s\n' "$source_line" >> "$HOME/.zshrc"
-    printf 'Updated %s\n' "$HOME/.zshrc"
-  fi
+  add_source_line "$HOME/.zshrc" "$source_line"
 }
 
 import_zsh_peco() {
   local source_line='source "$HOME/.config/zsh/peco.zsh"'
 
   import_file "$ROOT_DIR/config/zsh/peco.zsh" "$HOME/.config/zsh/peco.zsh"
-  touch "$HOME/.zshrc"
+  add_source_line "$HOME/.zshrc" "$source_line"
+}
 
-  if ! grep -Fqx "$source_line" "$HOME/.zshrc"; then
-    printf '\n%s\n' "$source_line" >> "$HOME/.zshrc"
-    printf 'Updated %s\n' "$HOME/.zshrc"
+add_source_line() {
+  local startup_file="$1"
+  local source_line="$2"
+
+  touch "$startup_file"
+  if ! grep -Fqx "$source_line" "$startup_file"; then
+    printf '\n%s\n' "$source_line" >> "$startup_file"
+    printf 'Updated %s\n' "$startup_file"
   fi
+}
+
+import_zsh_tools() {
+  import_file "$ROOT_DIR/config/zsh/homebrew.zsh" "$HOME/.config/zsh/homebrew.zsh"
+  import_file "$ROOT_DIR/config/zsh/tools.zsh" "$HOME/.config/zsh/tools.zsh"
+
+  add_source_line "$HOME/.zprofile" 'source "$HOME/.config/zsh/homebrew.zsh"'
+  add_source_line "$HOME/.zshrc" 'source "$HOME/.config/zsh/tools.zsh"'
 }
 
 import_all() {
   import_git_ignore
   import_zsh_aliases
   import_zsh_peco
+  import_zsh_tools
 }
 
 command="${1:-}"
@@ -107,6 +118,9 @@ case "$command" in
         ;;
       zsh-peco)
         import_zsh_peco
+        ;;
+      zsh-tools)
+        import_zsh_tools
         ;;
       *)
         printf 'Unknown import target: %s\n\n' "$target" >&2

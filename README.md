@@ -11,8 +11,7 @@ bin/dotfiles install
 ```
 
 This installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`, `mise`, and the
-Moralerspace font. Homebrew's environment is applied only while the command is running;
-shell startup files are not modified.
+Moralerspace font.
 
 ## Import
 
@@ -41,3 +40,16 @@ bin/dotfiles import zsh-peco
 ```
 
 The widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository selection.
+
+Configure Homebrew in `~/.zprofile`, then activate mise and Starship from `~/.zshrc`:
+
+```sh
+bin/dotfiles import zsh-tools
+```
+
+The `all` target includes this setup, so a new Mac can be configured with:
+
+```sh
+bin/dotfiles install
+bin/dotfiles import
+```
