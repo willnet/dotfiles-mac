@@ -27,6 +27,12 @@ Import only the global Git ignore file:
 bin/dotfiles import git-ignore
 ```
 
+Import the global Git config:
+
+```sh
+bin/dotfiles import git-config
+```
+
 Import zsh aliases and load them from `~/.zshrc`:
 
 ```sh

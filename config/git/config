@@ -1,0 +1,44 @@
+[color]
+        ui = auto
+[alias]
+        s = status
+        st = status
+        co = checkout
+        ci = commit
+        cp = cherry-pick
+        a = add
+        b = branch
+        br = branch
+        di = diff
+        dic = diff --cached
+        r = reset
+        m = merge
+        l = log
+        sw = switch
+        delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+[user]
+	name = Shinichi Maeshima
+	email = netwillnet@gmail.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF1mfzXdypgDC+TYgwEhtqc4NE48QCFqUYYAgWwjjQYW
+[pull]
+	ff = only
+[core]
+	commentChar = ";"
+[checkout]
+	defaultRemote = origin
+[init]
+	defaultBranch = main
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
