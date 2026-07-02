@@ -27,6 +27,12 @@ Import only the global Git ignore file:
 bin/dotfiles import git-ignore
 ```
 
+Link Claude Code, Codex, and GitHub Copilot global instructions to the shared source file:
+
+```sh
+bin/dotfiles import agent-instructions
+```
+
 Import the global Git config:
 
 ```sh

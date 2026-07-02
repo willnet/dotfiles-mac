@@ -14,12 +14,13 @@ Commands:
   import      Import managed config files
 
 Targets:
-  all         Import all managed config files
-  git-config Import ~/.gitconfig
-  git-ignore  Import ~/.config/git/ignore
-  zsh-aliases Import zsh aliases and load them from ~/.zshrc
-  zsh-peco    Import peco widgets and load them from ~/.zshrc
-  zsh-tools   Configure Homebrew, mise, and Starship for zsh
+  all                  Import all managed config files
+  agent-instructions   Link Claude Code, Codex, and GitHub Copilot global instructions
+  git-config           Import ~/.gitconfig
+  git-ignore           Import ~/.config/git/ignore
+  zsh-aliases          Import zsh aliases and load them from ~/.zshrc
+  zsh-peco             Import peco widgets and load them from ~/.zshrc
+  zsh-tools            Configure Homebrew, mise, and Starship for zsh
 USAGE
 }
 
@@ -55,12 +56,27 @@ import_file() {
   printf 'Imported %s\n' "$destination_path"
 }
 
+link_file() {
+  local source_path="$1"
+  local destination_path="$2"
+
+  mkdir -p "$(dirname "$destination_path")"
+  ln -sfn "$source_path" "$destination_path"
+  printf 'Linked %s -> %s\n' "$destination_path" "$source_path"
+}
+
 import_git_ignore() {
   import_file "$ROOT_DIR/config/git/ignore" "$HOME/.config/git/ignore"
 }
 
 import_git_config() {
   import_file "$ROOT_DIR/config/git/config" "$HOME/.gitconfig"
+}
+
+import_agent_instructions() {
+  link_file "$ROOT_DIR/config/ai/agent-instructions.md" "$HOME/.codex/AGENTS.md"
+  link_file "$ROOT_DIR/config/ai/agent-instructions.md" "$HOME/.claude/CLAUDE.md"
+  link_file "$ROOT_DIR/config/ai/agent-instructions.md" "$HOME/.copilot/copilot-instructions.md"
 }
 
 import_zsh_aliases() {
@@ -97,6 +113,7 @@ import_zsh_tools() {
 }
 
 import_all() {
+  import_agent_instructions
   import_git_config
   import_git_ignore
   import_zsh_aliases
@@ -121,6 +138,9 @@ case "$command" in
         ;;
       git-config)
         import_git_config
+        ;;
+      agent-instructions)
+        import_agent_instructions
         ;;
       zsh-aliases)
         import_zsh_aliases
