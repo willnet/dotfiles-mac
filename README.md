@@ -47,7 +47,7 @@ environment files are layered on top of the shared `mise.toml`:
 | File | Applies to | Contents |
 | --- | --- | --- |
 | `mise.toml` | Both | Shared packages, dotfiles, Dock, and Karabiner configuration |
-| `mise.personal.toml` | Personal | 1Password and Google Chrome |
+| `mise.personal.toml` | Personal | 1Password, Google Chrome, Orca (AI agent development environment), and Tailscale |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
 On each Mac, create `.miserc.local.toml` in this repository with your selection:

@@ -2,3 +2,5 @@
 [bootstrap.packages]
 "brew-cask:1password" = "latest"
 "brew-cask:google-chrome" = "latest"
+"brew-cask:stablyai/orca/orca" = "latest"
+"brew-cask:tailscale-app" = "latest"
