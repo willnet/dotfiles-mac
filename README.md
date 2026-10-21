@@ -12,7 +12,7 @@ then run the following from this repository:
 mise trust
 ```
 
-Preview and apply the shared setup:
+Choose an environment as described below, then preview and apply it:
 
 ```sh
 mise bootstrap --dry-run
@@ -38,6 +38,45 @@ Open a new login shell after applying the configuration.
 The peco widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository
 selection. Keep this checkout in place because the instruction symlinks refer
 to its files.
+
+## Personal and work Macs
+
+Following [this setup pattern](https://blog.shibayu36.org/entry/2026/10/13/173000),
+environment files are layered on top of the shared `mise.toml`:
+
+| File | Applies to | Contents |
+| --- | --- | --- |
+| `mise.toml` | Both | Shared packages, dotfiles, and Dock configuration |
+| `mise.personal.toml` | Personal | 1Password and Google Chrome |
+| `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
+
+On each Mac, create `.miserc.local.toml` in this repository with your selection:
+
+```toml
+env = ["personal"]
+```
+
+Use `env = ["work"]` on a work Mac. This file is ignored by Git, so the choice
+stays on that Mac. After selecting it, run `mise trust` to trust the environment
+file, then use `mise bootstrap` as usual. Check loaded files with `mise config`.
+
+For a machine-wide selection, you can instead set the same `env` in
+`~/.config/mise/miserc.local.toml`, as in the article. It affects other mise
+projects too. A one-time selection is also possible:
+
+```sh
+mise -E personal bootstrap --dry-run
+mise -E personal bootstrap
+mise -E work bootstrap --dry-run
+```
+
+Add environment-specific `[bootstrap.packages]`, `[dotfiles]`, or macOS settings
+to the corresponding file. A dotfile with the same target overrides the shared
+source. Keep private overrides in `mise.personal.local.toml` or
+`mise.work.local.toml`, both ignored by Git.
+
+Existing settings, including the Git identity in `config/git/config`, remain
+shared. Changing environments does not uninstall packages installed previously.
 
 ## Update and inspect
 

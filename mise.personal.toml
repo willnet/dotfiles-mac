@@ -1,0 +1,4 @@
+# Loaded on top of mise.toml when the personal environment is selected.
+[bootstrap.packages]
+"brew-cask:1password" = "latest"
+"brew-cask:google-chrome" = "latest"

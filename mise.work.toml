@@ -1,0 +1,5 @@
+# Loaded on top of mise.toml when the work environment is selected.
+# Add work-only packages and dotfile overrides here.
+[bootstrap.packages]
+
+[dotfiles]
