@@ -1,0 +1,18 @@
+{
+    "title": "左コマンドキーとスペースで英数に切り替える",
+    "rules": [
+        {
+            "description": "左コマンドキーとスペースを押したときに英数キーを送信する",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "spacebar",
+                        "modifiers": { "mandatory": ["left_command"] }
+                    },
+                    "to": [{ "key_code": "japanese_eisuu" }],
+                    "type": "basic"
+                }
+            ]
+        }
+    ]
+}

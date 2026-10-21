@@ -24,7 +24,7 @@ Open a new login shell after applying the configuration.
 `mise.toml` declares the shared setup:
 
 - `[bootstrap.packages]` installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`,
-  RubyMine, VS Code, and the Moralerspace font through mise's
+  Karabiner-Elements, RubyMine, VS Code, and the Moralerspace font through mise's
   built-in `brew` and `brew-cask` managers. Homebrew itself is not required;
   mise is installed separately.
 - `[dotfiles]` copies Git and zsh configuration files and links Claude Code,
@@ -46,7 +46,7 @@ environment files are layered on top of the shared `mise.toml`:
 
 | File | Applies to | Contents |
 | --- | --- | --- |
-| `mise.toml` | Both | Shared packages, dotfiles, and Dock configuration |
+| `mise.toml` | Both | Shared packages, dotfiles, Dock, and Karabiner configuration |
 | `mise.personal.toml` | Personal | 1Password and Google Chrome |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
@@ -77,6 +77,32 @@ source. Keep private overrides in `mise.personal.local.toml` or
 
 Existing settings, including the Git identity in `config/git/config`, remain
 shared. Changing environments does not uninstall packages installed previously.
+
+## Karabiner-Elements
+
+Bootstrap installs and enables a Complex Modification that sends `japanese_eisuu`
+when you press Left Command + Space in the selected profile. On a fresh setup,
+it creates a selected Default profile. Other profiles and rules are preserved.
+
+It also enables these Simple Modifications for all devices in the selected
+profile, managed in `config/karabiner/simple_modifications.json`:
+
+- Caps Lock → Left Control
+- Right Command → Japanese Kana
+
+Mappings for the same source key are updated; other mappings and device-specific
+settings are preserved.
+
+The rule is managed in
+`config/karabiner/complex_modifications/left-command-space-to-eisuu.json` and
+copied to `~/.config/karabiner/assets/complex_modifications/` by bootstrap.
+The bootstrap task uses macOS's `/usr/bin/ruby` to update `karabiner.json`.
+Rules with the same description are updated instead of duplicated. Before the
+first change to an existing configuration, it saves
+`karabiner.json.bootstrap-backup`. After editing the asset, run `mise bootstrap`
+again to update the enabled rule. Keep its description unchanged to identify it.
+
+To enable or update only these modifications, run `mise run bootstrap`.
 
 ## Update and inspect
 

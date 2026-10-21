@@ -6,6 +6,7 @@
 "brew:the_silver_searcher" = "latest"
 "brew:starship" = "latest"
 "brew-cask:font-moralerspace" = "latest"
+"brew-cask:karabiner-elements" = "latest"
 "brew-cask:rubymine" = "latest"
 "brew-cask:visual-studio-code" = "latest"
 
@@ -15,7 +16,12 @@ zsh = true
 [bootstrap.macos.dock]
 autohide = true
 
+[tasks.bootstrap]
+description = "Enable managed Karabiner modifications in the selected profile"
+run = "/usr/bin/ruby scripts/enable-karabiner-rule.rb"
+
 [dotfiles]
+"~/.config/karabiner/assets/complex_modifications/left-command-space-to-eisuu.json" = { source = "config/karabiner/complex_modifications/left-command-space-to-eisuu.json", mode = "copy" }
 "~/.gitconfig" = { source = "config/git/config", mode = "copy" }
 "~/.config/git/ignore" = { source = "config/git/ignore", mode = "copy" }
 "~/.codex/AGENTS.md" = { source = "config/ai/agent-instructions.md", mode = "symlink" }
