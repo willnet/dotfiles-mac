@@ -6,6 +6,7 @@
 "brew:the_silver_searcher" = "latest"
 "brew:starship" = "latest"
 "brew-cask:font-moralerspace" = "latest"
+"brew-cask:font-moralerspace-hw" = "latest"
 "brew-cask:karabiner-elements" = "latest"
 "brew-cask:rubymine" = "latest"
 "brew-cask:visual-studio-code" = "latest"

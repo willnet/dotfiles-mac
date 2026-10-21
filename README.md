@@ -24,7 +24,7 @@ Open a new login shell after applying the configuration.
 `mise.toml` declares the shared setup:
 
 - `[bootstrap.packages]` installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`,
-  Karabiner-Elements, RubyMine, VS Code, and the Moralerspace font through mise's
+  Karabiner-Elements, RubyMine, VS Code, and the Moralerspace and Moralerspace HW fonts through mise's
   built-in `brew` and `brew-cask` managers. Homebrew itself is not required;
   mise is installed separately.
 - `[dotfiles]` copies Git and zsh configuration files and links Claude Code,
