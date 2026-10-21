@@ -1,0 +1,32 @@
+[bootstrap.packages]
+"brew:ghq" = "latest"
+"brew:peco" = "latest"
+"brew:git" = "latest"
+"brew:gh" = "latest"
+"brew:the_silver_searcher" = "latest"
+"brew:starship" = "latest"
+"brew-cask:font-moralerspace" = "latest"
+"brew-cask:rubymine" = "latest"
+"brew-cask:visual-studio-code" = "latest"
+
+[bootstrap.mise_shell_activate]
+zsh = true
+
+[bootstrap.macos.dock]
+autohide = true
+
+[dotfiles]
+"~/.gitconfig" = { source = "config/git/config", mode = "copy" }
+"~/.config/git/ignore" = { source = "config/git/ignore", mode = "copy" }
+"~/.codex/AGENTS.md" = { source = "config/ai/agent-instructions.md", mode = "symlink" }
+"~/.claude/CLAUDE.md" = { source = "config/ai/agent-instructions.md", mode = "symlink" }
+"~/.copilot/copilot-instructions.md" = { source = "config/ai/agent-instructions.md", mode = "symlink" }
+"~/.config/zsh/aliases.zsh" = { source = "config/zsh/aliases.zsh", mode = "copy" }
+"~/.config/zsh/peco.zsh" = { source = "config/zsh/peco.zsh", mode = "copy" }
+"~/.config/zsh/homebrew.zsh" = { source = "config/zsh/homebrew.zsh", mode = "copy" }
+"~/.config/zsh/tools.zsh" = { source = "config/zsh/tools.zsh", mode = "copy" }
+"~/.zshenv/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"' }
+"~/.zprofile/homebrew" = { line = 'source "$HOME/.config/zsh/homebrew.zsh"' }
+"~/.zshrc/aliases" = { line = 'source "$HOME/.config/zsh/aliases.zsh"' }
+"~/.zshrc/peco" = { line = 'source "$HOME/.config/zsh/peco.zsh"' }
+"~/.zshrc/tools" = { line = 'source "$HOME/.config/zsh/tools.zsh"' }
