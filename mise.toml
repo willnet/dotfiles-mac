@@ -1,4 +1,5 @@
 [bootstrap.packages]
+"brew:curl" = "latest"
 "brew:ghq" = "latest"
 "brew:peco" = "latest"
 "brew:git" = "latest"

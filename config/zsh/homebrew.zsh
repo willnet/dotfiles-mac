@@ -5,3 +5,6 @@ elif [[ -x /usr/local/bin/brew ]]; then
 else
   export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 fi
+
+# Homebrew's curl is keg-only, so prefer it explicitly over macOS's curl.
+export PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/opt/curl/bin:$PATH"

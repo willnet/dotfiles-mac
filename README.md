@@ -23,7 +23,7 @@ Open a new login shell after applying the configuration.
 
 `mise.toml` declares the shared setup:
 
-- `[bootstrap.packages]` installs `ghq`, `peco`, `git`, `gh`, `ag`, `starship`,
+- `[bootstrap.packages]` installs `curl`, `ghq`, `peco`, `git`, `gh`, `ag`, `starship`,
   Karabiner-Elements, RubyMine, VS Code, and the Moralerspace and Moralerspace HW fonts through mise's
   built-in `brew` and `brew-cask` managers. Homebrew itself is not required;
   mise is installed separately.
@@ -33,6 +33,8 @@ Open a new login shell after applying the configuration.
   contents or adding duplicate source lines.
 - `[bootstrap.mise_shell_activate]` configures mise shims in `~/.zprofile` and
   interactive activation in `~/.zshrc`. The zsh tools file initializes Starship.
+- The Homebrew shell configuration puts `opt/curl/bin` first in `PATH` so
+  shells use Homebrew's curl instead of the macOS version.
 - `[bootstrap.macos.dock]` automatically hides the Dock.
 
 The peco widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository
