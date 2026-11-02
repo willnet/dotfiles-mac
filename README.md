@@ -35,6 +35,8 @@ Open a new login shell after applying the configuration.
   interactive activation in `~/.zshrc`. The zsh tools file initializes Starship.
 - The Homebrew shell configuration puts `opt/curl/bin` first in `PATH` so
   shells use Homebrew's curl instead of the macOS version.
+- Shared zsh environment settings use `code --wait` as `EDITOR` and set
+  `NPM_CONFIG_IGNORE_SCRIPTS=true` to disable npm lifecycle scripts by default.
 - `[bootstrap.macos.dock]` automatically hides the Dock.
 
 The peco widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository
@@ -49,7 +51,7 @@ environment files are layered on top of the shared `mise.toml`:
 | File | Applies to | Contents |
 | --- | --- | --- |
 | `mise.toml` | Both | Shared packages, dotfiles, Dock, and Karabiner configuration |
-| `mise.personal.toml` | Personal | 1Password, Google Chrome, Orca (AI agent development environment), and Tailscale |
+| `mise.personal.toml` | Personal | direnv and its zsh hook, 1Password and its SSH Agent socket, Google Chrome, Orca (AI agent development environment), and Tailscale |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
 On each Mac, create `.miserc.local.toml` in this repository with your selection:
@@ -79,6 +81,8 @@ source. Keep private overrides in `mise.personal.local.toml` or
 
 Existing settings, including the Git identity in `config/git/config`, remain
 shared. Changing environments does not uninstall packages installed previously.
+It also does not remove previously applied shell settings. The personal setup
+points `SSH_AUTH_SOCK` at 1Password; enable its SSH Agent in the app settings.
 
 ## Karabiner-Elements
 

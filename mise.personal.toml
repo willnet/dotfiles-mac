@@ -1,6 +1,12 @@
 # Loaded on top of mise.toml when the personal environment is selected.
 [bootstrap.packages]
+"brew:direnv" = "latest"
 "brew-cask:1password" = "latest"
 "brew-cask:google-chrome" = "latest"
 "brew-cask:stablyai/orca/orca" = "latest"
 "brew-cask:tailscale-app" = "latest"
+
+[dotfiles]
+"~/.config/zsh/personal.zsh" = { source = "config/zsh/personal.zsh", mode = "copy" }
+"~/.zshrc/personal" = { line = 'source "$HOME/.config/zsh/personal.zsh"' }
+"~/.zprofile/1password-ssh-agent" = { line = 'export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"' }

@@ -34,6 +34,9 @@ run = "/usr/bin/ruby scripts/enable-karabiner-rule.rb"
 "~/.config/zsh/homebrew.zsh" = { source = "config/zsh/homebrew.zsh", mode = "copy" }
 "~/.config/zsh/tools.zsh" = { source = "config/zsh/tools.zsh", mode = "copy" }
 "~/.zshenv/local-bin" = { line = 'export PATH="$HOME/.local/bin:$PATH"' }
+"~/.zshenv/editor" = { line = 'export EDITOR="code --wait"' }
+# Keep dependency install scripts disabled by default across projects.
+"~/.zshenv/npm-ignore-scripts" = { line = 'export NPM_CONFIG_IGNORE_SCRIPTS=true' }
 "~/.zprofile/homebrew" = { line = 'source "$HOME/.config/zsh/homebrew.zsh"' }
 "~/.zshrc/aliases" = { line = 'source "$HOME/.config/zsh/aliases.zsh"' }
 "~/.zshrc/peco" = { line = 'source "$HOME/.config/zsh/peco.zsh"' }
