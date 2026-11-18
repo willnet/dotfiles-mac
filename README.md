@@ -51,7 +51,7 @@ environment files are layered on top of the shared `mise.toml`:
 | File | Applies to | Contents |
 | --- | --- | --- |
 | `mise.toml` | Both | Shared packages, dotfiles, Dock, and Karabiner configuration |
-| `mise.personal.toml` | Personal | direnv and its zsh hook, 1Password and its SSH Agent socket, Google Chrome, Orca (AI agent development environment), and Tailscale |
+| `mise.personal.toml` | Personal | Ruby for tap metadata, direnv and its zsh hook, 1Password and its SSH Agent socket, Google Chrome, Orca (AI agent development environment), and Tailscale |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
 On each Mac, create `.miserc.local.toml` in this repository with your selection:
@@ -62,13 +62,26 @@ env = ["personal"]
 
 Use `env = ["work"]` on a work Mac. This file is ignored by Git, so the choice
 stays on that Mac. After selecting it, run `mise trust` to trust the environment
-file, then use `mise bootstrap` as usual. Check loaded files with `mise config`.
+file. On a personal Mac, prepare Ruby before the first preview:
+
+```sh
+mise install ruby
+mise bootstrap --dry-run
+mise bootstrap
+```
+
+Orca's third-party tap needs Ruby 3 or newer to evaluate its cask definition;
+macOS's system Ruby is too old. The personal configuration installs a precompiled
+Ruby and also installs it in a `pre-packages` hook so `mise bootstrap` works on
+a fresh Mac. A dry run does not run hooks, so install Ruby explicitly before
+the first preview. Check loaded files with `mise config`.
 
 For a machine-wide selection, you can instead set the same `env` in
 `~/.config/mise/miserc.local.toml`, as in the article. It affects other mise
 projects too. A one-time selection is also possible:
 
 ```sh
+mise -E personal install ruby
 mise -E personal bootstrap --dry-run
 mise -E personal bootstrap
 mise -E work bootstrap --dry-run

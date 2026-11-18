@@ -1,4 +1,14 @@
 # Loaded on top of mise.toml when the personal environment is selected.
+[tools]
+ruby = "latest"
+
+[settings.ruby]
+compile = false
+
+[bootstrap.hooks]
+# Hooks do not inherit -E, and tap metadata is read before the tools phase.
+pre-packages = "mise -E personal install ruby"
+
 [bootstrap.packages]
 "brew:direnv" = "latest"
 "brew-cask:1password" = "latest"
