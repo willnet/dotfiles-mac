@@ -18,6 +18,12 @@ zsh = true
 [bootstrap.macos.dock]
 autohide = true
 
+[[bootstrap.macos.defaults_entries]]
+domain = "com.apple.symbolichotkeys"
+key = "AppleSymbolicHotKeys"
+path = ["64"]
+value = { enabled = true, value = { type = "standard", parameters = [32, 49, 524288] } }
+
 [tasks.bootstrap]
 description = "Enable managed Karabiner modifications in the selected profile"
 run = "/usr/bin/ruby scripts/enable-karabiner-rule.rb"

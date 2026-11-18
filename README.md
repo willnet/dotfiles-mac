@@ -38,6 +38,8 @@ Open a new login shell after applying the configuration.
 - Shared zsh environment settings use `code --wait` as `EDITOR` and set
   `NPM_CONFIG_IGNORE_SCRIPTS=true` to disable npm lifecycle scripts by default.
 - `[bootstrap.macos.dock]` automatically hides the Dock.
+- `[[bootstrap.macos.defaults_entries]]` enables Spotlight search on
+  Option (Alt) + Space while preserving other keyboard shortcuts.
 
 The peco widgets bind `Ctrl-R` to history search and `Ctrl-]` to repository
 selection. Keep this checkout in place because the instruction symlinks refer
@@ -50,7 +52,7 @@ environment files are layered on top of the shared `mise.toml`:
 
 | File | Applies to | Contents |
 | --- | --- | --- |
-| `mise.toml` | Both | Shared packages, dotfiles, Dock, and Karabiner configuration |
+| `mise.toml` | Both | Shared packages, dotfiles, Dock, Spotlight shortcut, and Karabiner configuration |
 | `mise.personal.toml` | Personal | Ruby for tap metadata, direnv and its zsh hook, 1Password and its SSH Agent socket, Google Chrome, Orca (AI agent development environment), and Tailscale |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
@@ -152,6 +154,8 @@ Apply only macOS preferences, then restart the Dock to reflect the change:
 mise bootstrap --only macos-defaults
 killall Dock
 ```
+
+The Spotlight shortcut may require logging out and back in to take effect.
 
 ## Migration
 
