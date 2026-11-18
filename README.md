@@ -53,7 +53,7 @@ environment files are layered on top of the shared `mise.toml`:
 | File | Applies to | Contents |
 | --- | --- | --- |
 | `mise.toml` | Both | Shared packages, dotfiles, Dock, Spotlight shortcut, and Karabiner configuration |
-| `mise.personal.toml` | Personal | Ruby for tap metadata, direnv and its zsh hook, 1Password and its SSH Agent socket, Google Chrome, Orca (AI agent development environment), and Tailscale |
+| `mise.personal.toml` | Personal | Ruby for tap metadata, direnv and its zsh hook, 1Password and its SSH Agent socket, Docker Desktop, Google Chrome, Orca (AI agent development environment), and Tailscale |
 | `mise.work.toml` | Work | Work-only additions and overrides (currently empty) |
 
 On each Mac, create `.miserc.local.toml` in this repository with your selection:
